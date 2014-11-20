@@ -1,0 +1,68 @@
+<?php
+require '../class/Database.class.php';
+require 'getSeasonInfo.php';
+
+function getShowTv($name)
+{
+  // OLD WIKIPEDIA SEARCH WAY
+  // // Get wikipedia search
+  // $query = getSource("http://en.wikipedia.org/w/index.php?search=" . $name . "+tv+show&fulltext=Search+");
+  // // Get first link
+  // if (preg_match("#mw-search-result-heading.*?a.href=\"(.*?)\"#", $query, $matches) != 1)
+  // {
+  //   echo $query;
+  //   return ("error");
+  // }
+  // // Get ShowTV wikipedia page
+  // $url = "http://en.wikipedia.org" . $matches[1];
+  // $query = getSource($url);
+
+  // Get google search
+  $query = getSource("http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=wikipedia+"
+    . $name . "+tv+show");
+
+  if (preg_match("#(http://en.wikipedia.org.*?)\"#s", $query, $matches) != 1)
+    return ("error1");
+
+  $url = $matches[1];
+
+  // Load wikipedia showtv page
+  $query = getSource($url);
+
+  // Get image
+  if (preg_match("#navbox-title.*?>(.*?)<.*?class=.image.*?<img.*?src=.//(.*?)\"#si", $query, $matches) != 1)
+    return ("error2");
+
+  $name = $matches[1];
+  $imgurl = "http://" . $matches[2];
+
+  // Get List of Episodes link
+  if (preg_match("#.*a.href=\"(.*?)\".*?List.of.episode#", $query, $matches) != 1)
+    return ("error3");
+
+  $serie_overview = preg_match("#Series.Overview#si", $query, $matchesoverview);
+
+  // Get ShowTV List of Episodes
+  // Check if good link
+  if ($matches[1][0] != "#" && $serie_overview != 1)
+  {
+    $url = "http://en.wikipedia.org" . $matches[1];
+    $query = getSource($url);
+  }
+
+  if (getSeasonInfo($query, $current_season, $date) != true)
+    return ("error4");
+
+  $db = new Database;
+  if (!$db->addShowTv($name, $current_season, 0, $date, $url, $imgurl))
+    return ("error5");
+
+  return ("success");
+}
+
+$name = $_REQUEST['name'];
+// Replace space by +
+$name = str_replace(" ", "+", $name);
+
+echo getShowTv($name);
+?>
