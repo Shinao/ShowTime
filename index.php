@@ -1,7 +1,7 @@
 <?php
 session_start();
 ?>
-  <!-- Hello fellow traveler - Enjoy your stay - but not too much -->
+  <!-- Hello fellow traveller - Enjoy your stay - but not too much -->
   <!DOCTYPE html><html class="full" lang="en">
 
   <head>
@@ -14,6 +14,8 @@ session_start();
 
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/showtime.css" rel="stylesheet">
+  <link href="css/easy-autocomplete.min.css" rel="stylesheet">
+  <link href="css/easy-autocomplete.themes.min.css" rel="stylesheet">
   <link rel="icon" type="image/png" href="showtime-icon.png">
   </head>
 
@@ -21,11 +23,12 @@ session_start();
 
   <!-- JavaScript -->
   <script src="js/jquery-1.10.2.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/notify.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/notify.min.js"></script>
+  <script src="js/jquery.easy-autocomplete.min.js"></script>
 
 <nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
-  <a class="navbar-brand" href="index.html">ShowTime</a>
+  <a class="navbar-brand" href="index.php">ShowTime</a>
   <div class="collapse navbar-collapse navbar-ex1-collapse">
   <ul class="nav navbar-nav">
   <li><a>beautiful. perfect. like a duck.</a></li>

@@ -22,6 +22,37 @@ body {
   width: 56px;
 }
 
+.itemAutocomplete span
+{
+  float: left;
+}
+
+.itemAutocomplete 
+{
+  height: 55px;
+  max-height: 80px;
+}
+
+.itemAutocomplete div
+{
+  padding-top: 12px;
+}
+
+.itemAutocomplete p.description
+{
+  color: #7E7E7E;
+  size: 10px;
+}
+
+.itemAutocomplete img
+{
+  min-width: 40px;
+  min-height: 55px;
+  max-width: 40px;
+  max-height: 80px;
+  float: right;
+}
+
 #bridge {
   display: none;
 }
@@ -29,7 +60,7 @@ body {
 table#vsTable img {
   /* border: 1px solid black; */
   max-width: 256px;
-  max-height: 100px;
+  max-height: 156px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -185,7 +216,13 @@ table#vsTable .titleImage {
 }
 
 #form-add-showtv {
+  margin-left: -100px;
   text-align: center;
+}
+
+#showtv-name
+{
+  width: 250px;
 }
 
 #movieTableContainer {

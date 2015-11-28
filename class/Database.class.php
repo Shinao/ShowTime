@@ -75,11 +75,11 @@ echo $e->getMessage( );
     return true;
   }
 
-  public function updateShow($id, $current_season, $date_season_final)
+  public function updateShow($urlimg, $id, $year, $name, $apiid, $rating, $status, $current_season, $date_season_final)
   {
-    $query = $this->db->prepare("UPDATE showtv SET current_season = ?,date_season_final=? WHERE id = ?");
+    $query = $this->db->prepare("UPDATE showtv SET picture = ?, produced_year = ?, name = ?, api_id = ?, rating = ?, status = ?, current_season = ?, date_season_final = ? WHERE id = ?");
 
-    if (!$query->execute(array($current_season, $date_season_final, $id)))
+    if (!$query->execute(array($urlimg, $year, $name, $apiid, $rating, $status, $current_season, $date_season_final, $id)))
       return false;
 
     return true;

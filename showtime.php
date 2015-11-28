@@ -37,7 +37,27 @@ if (session_status() == PHP_SESSION_NONE)
 <script type='text/javascript'>
 $(document).ready(function()
 {
+  // Autocompletion when adding a new Show
   $("#showtv-name").focus();
+  var options = {
+		url: function(name) {
+			return "script/getShowsFromName.php?name=" + encodeURIComponent(name);
+		},
+		getValue: "name",
+		requestDelay: 500,
+		template: {
+			type: "custom",
+			method: function(value, item) {
+				return "<div class='itemAutocomplete'><img src='" + item.icon + "' /> <div>" + item.name + "<p class=description>" + item.year + " - " + item.rating + "/10</p></div></div>";
+			}
+		},
+		list: {
+			onSelectItemEvent: function() {
+				
+			}
+		}
+	};
+	$("#showtv-name").easyAutocomplete(options);
 
   function reloadShowTv()
   {
@@ -95,23 +115,20 @@ $(document).ready(function()
   $(".refresh").click(function() {
     $("#loaderImage").css('visibility','visible').hide().fadeIn(500);
 
-    $.ajax({ url: 'script/updateAll.php', success: function(data) {
-      if (data == "error")
-	$.notify("Shows could not update", "error");
-      else
-      {
-	$.notify("All Shows Updated", "success");
-	reloadShowTv();
-      }
+    $.ajax({ url: 'script/updateShows.php', success: function(data) {
+		if (data != "success")
+			$.notify("Oops. Something went wrong when updating TV Shows.", "error");
+		else
+		{
+			$.notify("All Shows Updated", "success");
+			reloadShowTv();
+		}
 
-      // Debug
-      $("#bridge").html(data);
-
-      // Fix visibility hidden
-      $("#loaderImage").fadeOut(500, function(){
-	$("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
-      });
-    }});
+		// Fix visibility hidden
+		$("#loaderImage").fadeOut(500, function(){
+			$("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
+		});
+	}});
 
   });
 
