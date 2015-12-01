@@ -186,6 +186,13 @@ table#vsTable tr td.relevant {
   font-weight: bold;
 }
 
+
+table#vsTable tr td.text.relevant span.description {
+  margin: 4px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
 table#vsTable tr td.title:hover {
   background: #404040;
 }

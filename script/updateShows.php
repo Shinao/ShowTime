@@ -21,7 +21,7 @@ foreach ($result as $row)
 	$current_season = $last_episode->season;
 	$season_finale = $last_episode->airdate;
 	
-	if (!$db->updateShow($show->imageUrl, $row['id'], $produced_year, $show->name, $show->id, $show->rating, $show->status, $current_season, $season_finale))
+	if (!$db->updateShow($row['id'], $show->id, $show->imageUrl, $show->name, $current_season, 1, $season_finale, $show->rating, $show->status, $produced_year))
 		echo $row['name'];
 }
 

@@ -31,11 +31,14 @@ echo $e->getMessage( );
     }
   }
 
-  public function addShowTv($name, $current_season, $desired_season, $season_final, $url, $avatar)
+  public function addShowTv($api_id, $picture, $name, $current_season, $desired_season, $date_season_final, $rating, $status, $produced_year)
   {
-    $query = $this->db->prepare("INSERT INTO showtv VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)");
+	if ($picture == null) $picture = "";
+	if ($rating == null) $rating = "";
+	
+    $query = $this->db->prepare("INSERT INTO showtv VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    if (!$query->execute(array($_SESSION['user'], $url, $avatar, $name, $current_season, $desired_season, $season_final)))
+    if (!$query->execute(array($_SESSION['user'], $api_id, $picture, $name, $current_season, $desired_season, $date_season_final, $rating, $status, $produced_year)))
       return false;
 
     return true;
@@ -43,7 +46,7 @@ echo $e->getMessage( );
 
   public function getShowTv()
   {
-    $query = $this->db->prepare("SELECT * FROM showtv WHERE id_user=?");
+    $query = $this->db->prepare("SELECT * FROM showtv WHERE id_user=? ORDER BY id ASC");
 
     if (!$query->execute(array($_SESSION['user'])))
       return false;
@@ -75,11 +78,14 @@ echo $e->getMessage( );
     return true;
   }
 
-  public function updateShow($urlimg, $id, $year, $name, $apiid, $rating, $status, $current_season, $date_season_final)
+  public function updateShow($id, $api_id, $picture, $name, $current_season, $desired_season, $date_season_final, $rating, $status, $produced_year)
   {
-    $query = $this->db->prepare("UPDATE showtv SET picture = ?, produced_year = ?, name = ?, api_id = ?, rating = ?, status = ?, current_season = ?, date_season_final = ? WHERE id = ?");
+	if ($picture == null) $picture = "";
+	if ($rating == null) $rating = "";
+	
+    $query = $this->db->prepare("UPDATE showtv SET api_id = ?, picture = ?, name = ?, current_season = ?, desired_season = ?, date_season_final = ?, rating = ?, status = ?, produced_year = ? WHERE id = ?");
 
-    if (!$query->execute(array($urlimg, $year, $name, $apiid, $rating, $status, $current_season, $date_season_final, $id)))
+    if (!$query->execute(array($api_id, $picture, $name, $current_season, $desired_season, $date_season_final, $rating, $status, $produced_year, $id)))
       return false;
 
     return true;

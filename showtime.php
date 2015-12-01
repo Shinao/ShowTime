@@ -61,7 +61,7 @@ $(document).ready(function()
 
   function reloadShowTv()
   {
-    $.ajax({ url: 'script/getShowTv.php',
+    $.ajax({ url: 'script/getShows.php',
       success: function(data) {
 	// Remove all previous row by overriding
 	$("table#vsTable tbody").html(data);
@@ -110,6 +110,24 @@ $(document).ready(function()
   }
 
   reloadShowTv();
+  
+  $.fn.scrollTo = function( target, options, callback ){
+  if(typeof options == 'function' && arguments.length == 2){ callback = options; options = target; }
+  var settings = $.extend({
+    scrollTarget  : target,
+    offsetTop     : 50,
+    duration      : 500,
+    easing        : 'swing'
+  }, options);
+  return this.each(function(){
+    var scrollPane = $(this);
+    var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
+    var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
+    scrollPane.animate({scrollTop : scrollY }, parseInt(settings.duration), settings.easing, function(){
+      if (typeof callback == 'function') { callback.call(this); }
+    });
+  });
+}
 
   // Refresh all
   $(".refresh").click(function() {
@@ -141,26 +159,22 @@ $(document).ready(function()
 
     $("#showtv-name").val('');
 
-    function searchFailed()
-    {
-      $.notify("Searching information for " + name + " failed.", "error");
-    }
-
     // Add ShowTV
-    $("#bridge").load("script/add_showtv.php?name=" + encodeURIComponent(name), function(response, status, xhr)
+    $("#bridge").load("script/addShowTv.php?name=" + encodeURIComponent(name), function(response, status, xhr)
     {
-      $("#loaderImage").fadeOut(500, function(){
-	$("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
-      });
-      if (status != "success" || response == "errror")
-      {
-	searchFailed();
-	return;
-      }
-      else
-	$.notify("Show " + name + " added", "success");
+		$("#loaderImage").fadeOut(500, function(){
+			$("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
+		});
+		if (status != "success" || response != "success")
+		{
+			$.notify("Searching information for " + name + " failed.", "error");
+			return;
+		}
+		
+		$.notify("Show " + name + " added", "success");
 
-      reloadShowTv();
+		reloadShowTv();
+		$('body').scrollTo('.showtvrow:last');
     });
   });
 });

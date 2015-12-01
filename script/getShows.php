@@ -45,10 +45,13 @@ else
 	$class_status = "available";
     }
 
+	$rating = empty($row['rating']) ? "?" : $row['rating'];
+	$rating .= "/10";
     echo "<tr class='showtvrow " . $class_tr . "'>";
     echo "<td class='status " . $class_status . "'></td>";
     echo "<td class='jacket'><img src='" . $row['picture'] . "'></td>";
-    echo "<td class='text relevant'>" . $row['name'] . "</td>";
+    echo "<td class='text relevant'>" . $row['name'];
+	echo "</br><span class='description'>" . $row['produced_year'] . " - " . $rating . " - " . $row['status'] . "</span></td>";
     echo "<td class='text relevant'>" . $row['current_season'] . "</td>";
     echo "<td class='text'>" . $date . "</td>";
     echo "<td class='text'><input type='number' class='spinner' value='"

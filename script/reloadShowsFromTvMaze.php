@@ -20,8 +20,8 @@ foreach ($result as $row)
 	$produced_year = date('Y', strtotime($show->premiered));
 	$current_season = $last_episode->season;
 	$season_finale = $last_episode->airdate;
-	
-	if ($db->updateShow($show->imageUrl, $row['id'], $produced_year, $show->name, $show->id, $show->rating, $show->status, $current_season, $season_finale) != true)
+	$id, $api_id, $picture, $name, $current_season, $desired_season, $date_season_final, $rating, $status, $produced_year)
+	if (!$db->updateShow($row['id'], $show->id, $show->imageUrl, $show->name, $current_season, 1, $season_finale, $show->rating, $show->status, $produced_year))
 		echo $row['name']."=>FAILED";
 	else
 		echo $row['name']."=>SUCCESS";
