@@ -44,9 +44,9 @@
     <div id="contentcontainer">
 		<?php
 			if (isset($_SESSION['user']))
-				include 'showtime.php';
+				include 'forms/showtime.php';
 			else
-				include 'login.php';
+				include 'forms/login.php';
 		?>
     </div>
   </body>

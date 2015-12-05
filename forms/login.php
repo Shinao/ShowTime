@@ -20,7 +20,7 @@
                     }
 
                     // Logon - Clear form signin and load showtime
-                    $("#contentcontainer").load("showtime.php");
+                    $("#contentcontainer").load("forms/showtime.php");
                 }
             });
         });

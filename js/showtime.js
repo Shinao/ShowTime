@@ -41,7 +41,7 @@ $(document).ready(function() {
                         function() {
                             var btn = $(this);
                             $.ajax({
-                                url: 'api/delete.php?id=' + $(this).data('id'),
+                                url: 'api/deleteShow.php?id=' + $(this).data('id'),
                                 success: function(data) {
                                     if (data == "success")
                                         btn.parent().parent().remove();
@@ -108,7 +108,7 @@ $(document).ready(function() {
         $("#showtv-name").val('');
 
         // Add ShowTV
-        $("#bridge").load("api/addShowTv.php?name=" + encodeURIComponent(name), function(response, status, xhr) {
+        $("#bridge").load("api/addShow.php?name=" + encodeURIComponent(name), function(response, status, xhr) {
             $("#loaderImage").fadeOut(500, function() {
                 $("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
             });
