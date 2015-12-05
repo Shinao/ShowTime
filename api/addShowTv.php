@@ -1,13 +1,11 @@
 <?php
-require '../class/Database.class.php';
-require 'TVMazeIncludes.php';
+	require '../db/Database.class.php';
+	require '../tvmaze/TVMazeIncludes.php';
 
-set_time_limit(90);
+	set_time_limit(90);
 
+	$name = $_REQUEST['name'];
 
-
-function addShowTv($name)
-{
 	$db = new Database;
 
 	$Client = new JPinkney\Client;
@@ -19,14 +17,10 @@ function addShowTv($name)
 	$produced_year = date('Y', strtotime($show->premiered));
 	$current_season = $last_episode->season;
 	$season_finale = $last_episode->airdate;
-	
+
 	if ($db->addShowTv($show->id, $show->imageUrl, $show->name, $current_season, 1, $season_finale, $show->rating, $show->status, $produced_year))
-		return ("success");
+		echo "success";
 	else
-		return ("error");
-}
+		echo "error";
 
-$name = $_REQUEST['name'];
-
-echo addShowTv($name);
 ?>

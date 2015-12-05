@@ -15,7 +15,7 @@ class TVMaze {
 	 * @return array
 	 */
 	function search($show_name){
-		$url = self::APIURL."/search/shows?q=".$show_name;
+		$url = self::APIURL."/search/shows?q=".urlencode($show_name);
 
 		$shows = $this->getFile($url);
 
@@ -68,7 +68,7 @@ class TVMaze {
 	 */
 	function singleSearch($show_name){
 
-		$url = self::APIURL."/singlesearch/shows?q=".$show_name.'&embed=episodes';
+		$url = self::APIURL."/singlesearch/shows?q=".urlencode($show_name).'&embed=episodes';
 		
 		return $this->createShowWithEpisodes($url);
 	}

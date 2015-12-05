@@ -22,30 +22,25 @@ body {
   width: 56px;
 }
 
-.itemAutocomplete span
-{
+.itemAutocomplete span {
   float: left;
 }
 
-.itemAutocomplete 
-{
+.itemAutocomplete {
   height: 55px;
   max-height: 80px;
 }
 
-.itemAutocomplete div
-{
+.itemAutocomplete div {
   padding-top: 12px;
 }
 
-.itemAutocomplete p.description
-{
+.itemAutocomplete p.description {
   color: #7E7E7E;
   size: 10px;
 }
 
-.itemAutocomplete img
-{
+.itemAutocomplete img {
   min-width: 40px;
   min-height: 55px;
   max-width: 40px;
@@ -58,7 +53,7 @@ body {
 }
 
 table#vsTable img {
-  /* border: 1px solid black; */
+    /* border: 1px solid black; */
   max-width: 256px;
   max-height: 156px;
   display: block;
@@ -139,11 +134,14 @@ table#vsTable tr td div {
   text-align: center;
 }
 
-table#vsTable tr td div.yes, table#vsTable tr td div.no, table#vsTable tr td div.partial {
+table#vsTable tr td div.yes,
+table#vsTable tr td div.no,
+table#vsTable tr td div.partial {
   height: 16px;
 }
 
-table#vsTable tr td.jacket div, table#vsTable tr td.title div {
+table#vsTable tr td.jacket div,
+table#vsTable tr td.title div {
   height: auto;
 }
 
@@ -186,7 +184,6 @@ table#vsTable tr td.relevant {
   font-weight: bold;
 }
 
-
 table#vsTable tr td.text.relevant span.description {
   margin: 4px;
   font-size: 12px;
@@ -227,8 +224,7 @@ table#vsTable .titleImage {
   text-align: center;
 }
 
-#showtv-name
-{
+#showtv-name {
   width: 250px;
 }
 
