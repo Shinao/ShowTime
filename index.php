@@ -16,7 +16,7 @@
     <link href="css/showtime.css" rel="stylesheet">
     <link href="css/easy-autocomplete.min.css" rel="stylesheet">
     <link href="css/easy-autocomplete.themes.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="showtime-icon.png">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
   </head>
   
   <body>
