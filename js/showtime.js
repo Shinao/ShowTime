@@ -108,18 +108,22 @@ $(document).ready(function() {
         $("#showtv-name").val('');
 
         // Add ShowTV
-        $("#bridge").load("api/addShow.php?name=" + encodeURIComponent(name), function(response, status, xhr) {
-            $("#loaderImage").fadeOut(500, function() {
-                $("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
-            });
-            if (status != "success" || response != "success") {
-                $.notify("Searching information for " + name + " failed.", "error");
-                return;
-            }
+		$.ajax({
+            url: "api/addShow.php?name=" + encodeURIComponent(name),
+            success: function(data) {				
+				$("#loaderImage").fadeOut(500, function() {
+					$("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
+				});
+				
+				if (data != "success") {
+					$.notify("Searching information for " + name + " failed.", "error");
+					return;
+				}
 
-            $.notify("Show " + name + " added", "success");
+				$.notify("Show " + name + " added", "success");
 
-            reloadShowTv();
+				reloadShowTv();
+			}
         });
     });
 });

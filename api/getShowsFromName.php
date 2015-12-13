@@ -1,6 +1,6 @@
 <?php
 
-require_once '../db/TVMazeIncludes.php';
+require_once '../tvmaze/TVMazeIncludes.php';
 
 $Client = new JPinkney\Client;
 $shows = $Client->TVMaze->search($_REQUEST['name']);
