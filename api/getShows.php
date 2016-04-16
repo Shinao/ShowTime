@@ -20,7 +20,7 @@
 		foreach ($result as $row)
 		{
 			$date = strtotime($row['date_season_final']);
-			if ($date == -3600)
+			if ($date <= 0)
 				$date = "Unannounced";
 			else
 				$date = date('j F Y', $date);
@@ -30,7 +30,7 @@
 			if ($row['desired_season'] < $row['current_season'])
 				$class_status = "available";
 			else if ($row['desired_season'] == $row['current_season'] && $date != "Unannounced")
-			{
+			{	
 				$season_final = strtotime($row['date_season_final']);
 				$time = time();
 				

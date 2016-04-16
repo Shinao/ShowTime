@@ -19,7 +19,7 @@
 		$produced_year = date('Y', strtotime($show->premiered));
 		$current_season = $last_episode->season;
 		$season_finale = $last_episode->airdate;
-		$id, $api_id, $picture, $name, $current_season, $desired_season, $date_season_final, $rating, $status, $produced_year)
+
 		if (!$db->updateShow($row['id'], $show->id, $show->imageUrl, $show->name, $current_season, 1, $season_finale, $show->rating, $show->status, $produced_year))
 			echo $row['name']."=>FAILED";
 		else
