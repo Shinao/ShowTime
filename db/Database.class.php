@@ -103,6 +103,8 @@
 				$picture = "";
 			if ($rating == null)
 				$rating = "";
+			if (empty($date_season_final))
+				$date_season_final = "0000-00-00";
 			
 			$query = $this->db->prepare("UPDATE showtv SET api_id = ?, picture = ?, name = ?, current_season = ?, desired_season = ?, date_season_final = ?, rating = ?, status = ?, produced_year = ? WHERE id = ?");
 			
