@@ -13,15 +13,15 @@
 		
 		public function __construct()
 		{
-			$PARAM_hote        = '127.0.0.1';
-			$PARAM_port        = '3306';
-			$PARAM_nom_bd      = 'showtime';
-			$PARAM_utilisateur = 'root';
-			$PARAM_mot_passe   = '';
+			$DB_HOST = '127.0.0.1';
+			$DB_PORT = '3306';
+			$DB_NAME = 'showtime';
+			$DB_USER = 'root';
+			$DB_PASSWORD = '';
 			
 			try {
 				$pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-				$this->db                       = new PDO('mysql:host=' . $PARAM_hote . ';dbname=' . $PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe, $pdo_options);
+				$this->db = new PDO('mysql:host=' . $DB_HOST . ';dbname=' . $DB_NAME, $DB_USER, $DB_PASSWORD, $pdo_options);
 			}
 			catch (PDOException $e) {
 				echo $e->getMessage();
