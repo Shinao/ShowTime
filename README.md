@@ -12,6 +12,12 @@ Adding Rick and Morty in the watch list
 <img src="/docs/showtime.gif"/>
 
 <br>
+**Using it**
+- Create a database and import db\showtime.sql
+- Change the databsae infos in the file db\Database.class.php
+- Connect with any e-mail and password it will create the account automatically
+
+<br>
 **Notes**
 
 Old project created for local hosting in mind with no concern about security at all : accounts are automatically created if it doesn't exist, passwords are stored in clear.
