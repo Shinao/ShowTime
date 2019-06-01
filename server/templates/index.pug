@@ -1,0 +1,52 @@
+doctype html
+html(lang='fr')
+    head
+        title ShowTime
+        
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
+
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/showtime.css')
+        link(rel='stylesheet', href='/css/easy-autocomplete.min.css')
+        link(rel='stylesheet', href='/css/easy-autocomplete.themes.min.css')
+
+        link(rel='icon', type='image/x-icon', sizes='96x96', href='/img/favicon.ico')
+
+    body.container
+        h1 ShowTime
+            img#loaderImage(src='img/loader32.gif')
+        #userbar
+
+        #login
+            form.well.form-signin(role='form')
+                h3.form-signin-heading Authentification
+                h6 An inexistant e-mail address will create an account automatically
+                input#username.form-control(type='text', placeholder='Username', autofocus='')
+                input#password.form-control(type='password', placeholder='Password', required='')
+                button#signin.pull-right.btn-lg.btn-primary Sign in
+
+        #shows
+            #form-add-showtv
+                input#showtv-name(type='text', placeholder='ShowTV Name')
+                button#btn-add-show.btn.btn-primary(type='submit') Add
+                button#btn-refresh-shows.btn.btn-default(type='button') Refresh
+
+            table#showsTable
+
+        nav.navbar.navbar-fixed-bottom.navbar-inverse(role='navigation')
+            a.navbar-brand(href='index.php') ShowTime
+            .collapse.navbar-collapse.navbar-ex1-collapse
+                ul.nav.navbar-nav
+                    li
+                        a beautiful. perfect. like a duck.
+
+        script(src='/js/jquery-2.2.1.min.js')
+        script(src='/js/bootstrap.js')
+        script(src='/js/notify.min.js')
+        script(src='/js/jquery.easy-autocomplete.min.js')
+        script(src='/js/moment.js')
+        script(src='/js/moment_local_fr.js')
+        script(src='/js/underscore-min.js')
+        script(src='/js/showtime.js')
