@@ -20,7 +20,7 @@ app.get('/*', function (req, res) {
 })
 
 // Create an HTTP service.
-http.createServer(app).listen(8081)
+http.createServer(app).listen(4542)
 // Nginx bypass this step
 // Create an HTTPS service identical to the HTTP service.
 // var options = {
