@@ -9,7 +9,7 @@ var app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(session({ name : 'showtime.sid', secret: 'showtime-hash-computer', resave: false, saveUninitialized: true, cookie: { maxAge: 9999999 } }))
+app.use(session({ name : 'showtime.sid', secret: 'showtime-hash-computer', resave: false, saveUninitialized: true, cookie: { maxAge: 365 * 24 * 60 * 60 * 1000 * 10 } }))
 app.use(express.static('../client'))
 
 require('./showtime.js').init(app)
