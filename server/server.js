@@ -16,9 +16,6 @@ require('./showtime.js').init(app)
 
 const htmlOfCompiledTemplateIndex = pug.compileFile('templates/index.pug')();
 app.get('/*', function (req, res) {
-    req.session.loggedin = true
-    req.session.username = "Shinao"
-    req.session.shows = db.find({ username: 'Shinao'}).get('shows').value()
   res.send(htmlOfCompiledTemplateIndex) 
 })
 
