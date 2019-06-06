@@ -64,7 +64,7 @@ module.exports.init = function (app) {
             response = JSON.parse(response)
 
             console.log(db.find({ api_id: response.id }).value())
-            if (db.find({ username: req.session.username }).get('shows').find({ api_id: response.id }).value())
+            if (db.find({ username: req.session.username }).get('shows').find({ api_id: response.id, desired_season: 1 }).value())
                 return res.sendStatus(HttpStatus.CONFLICT)
             
             var shows = db.find({ username: req.session.username }).get('shows')
