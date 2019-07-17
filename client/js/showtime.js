@@ -121,24 +121,13 @@ function setupEventsForShows() {
     $("#showtv-name").easyAutocomplete(options);
 
 
+    $("#btn-add-show").on('keypress',function(e) {
+        if (e.which == 13)
+            addShowEvent();
+    });
     $(document).off().on('click', '#btn-add-show', function(event) {
-        $("#loaderImage").css('visibility', 'visible').hide().fadeIn(500);
         event.preventDefault();
-
-        var name = $("#showtv-name").val();
-
-        $("#showtv-name").val('');
-
-        $.post("/add-show", { name: name })
-		.done(function() {
-            reloadSession();
-            $("#loaderImage").fadeOut(500, function() {
-                $("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
-            });
-            $.notify("Show " + name + " added", "success");
-        }).fail(function(error) {
-            manageRequestErrors(error, [417, 409], ["Searching information for " + name + " failed.", "Show " + name + " already present."])
-        });
+        addShowEvent();
     });
 
     $(document).on('click', '#btn-refresh-shows', function(event) {
@@ -188,6 +177,25 @@ function setupEventsForShows() {
         }).fail(function() {
             $.notify("Unable to uptade ShowTV", "error");
         });
+    });
+}
+
+var addShowEvent = function() {
+    $("#loaderImage").css('visibility', 'visible').hide().fadeIn(500);
+
+    var name = $("#showtv-name").val();
+
+    $("#showtv-name").val('');
+
+    $.post("/add-show", { name: name })
+    .done(function() {
+        reloadSession();
+        $("#loaderImage").fadeOut(500, function() {
+            $("#loaderImage").css('visibility', 'hidden').css('display', 'inline');
+        });
+        $.notify("Show " + name + " added", "success");
+    }).fail(function(error) {
+        manageRequestErrors(error, [417, 409], ["Searching information for " + name + " failed.", "Show " + name + " already present."])
     });
 }
 
