@@ -1,4 +1,5 @@
 var session = [];
+var scrollCache = undefined;
 moment.locale('en');
 
 $(document).ready(function() {
@@ -78,6 +79,9 @@ function generateShows() {
     });
 
     $("#showsTable").html(generated_html);
+
+    if (scrollCache)
+        $("html").scrollTop(scrollCache);
 }
 
 function setupShowsUI() {
@@ -121,7 +125,7 @@ function setupEventsForShows() {
     $("#showtv-name").easyAutocomplete(options);
 
 
-    $("#btn-add-show").on('keypress',function(e) {
+    $("#showtv-name").on('keypress', function(e) {
         if (e.which == 13)
             addShowEvent();
     });
@@ -172,6 +176,7 @@ function setupEventsForShows() {
         var row = $(this).parent().parent();
         $.post("/update-show-desired-season", { id: btn.attr('data-id'), desired_season: row.find('.spinner').val() })
         .done(function() {
+            scrollCache = $(window).scrollTop();
             reloadSession();
             $.notify("ShowTV updated", "success");
         }).fail(function() {
