@@ -105,8 +105,11 @@ module.exports.init = function (app) {
         });
         var cb = function() { latch.signal() }
 
-        _.each(shows, function(show) {
-            updateShow(showsDb, show.api_id, cb)
+        _.each(shows, function(show, idx) {
+            setTimeout(function() {
+                console.log(idx)
+                updateShow(showsDb, show.api_id, cb)
+            }, idx * 1000 / 2)
         })
 
     })
@@ -114,8 +117,10 @@ module.exports.init = function (app) {
 
 var updateShow = function (showsDb, show_api_id, cb) {
     tvmaze.showById(show_api_id, "embed", ["episodes"], function(error, response) {
-        if (!_.isEmpty(error))
+        if (!_.isEmpty(error) || response.startsWith("<html")) {
+            console.log(error)
             return cb()
+        }
 
         response = JSON.parse(response)
 
