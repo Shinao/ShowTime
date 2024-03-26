@@ -13,7 +13,7 @@
     "lodash": "^4",
     "lowdb": "1.0.0",
     "moment": "2.19.3",
-    "pug": "2.0.0-beta6",
+    "pug": "3.0.1",
     "request": "2.83.0",
     "tvmaze-node": "1.0.4",
     "underscore": "1.8.3",
